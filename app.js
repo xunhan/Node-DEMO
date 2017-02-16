@@ -6,9 +6,8 @@ var db = require('./lib/db.js');
 
 var session = require('express-session');
 
-app.set('trust proxy', 1) // trust first proxy 
 app.use(session({
-  secret: 'keyboard cat',
+  secret: 'Chenxi DaShuaige',
   resave: false,
   saveUninitialized: true
 }))

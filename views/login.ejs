@@ -25,7 +25,7 @@
         <p><input type="button" class="btn btn-default" value="登录" id="login"></p>
     </form>
     <div class="alert alert-success" role="alert" id="success"><p>登录成功，2 秒后跳转至主页</p></div>
-    <div class="alert alert-danger" role="alert" id="fail"><p>登录失败</p></div>
+    <div class="alert alert-danger" role="alert" id="fail"></div>
 </div>
     
 </body>
@@ -42,9 +42,9 @@
                     window.location='/';
                 },2000)
             }else if(data === '-1'){
-                $('#fail').append('<p>用户名不存在</p>').fadeIn();
+                $('#fail').html('').append('<p>登录失败,密码错误</p>').fadeIn();
             }else if(data === '-2'){
-                $('#fail').append('<p>密码错误</p>').fadeIn();
+                $('#fail').html('').append('<p>用户名不存在</p>').fadeIn();
             }
         })
     })

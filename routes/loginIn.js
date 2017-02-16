@@ -5,7 +5,9 @@ var router = express.Router();
 
 router.get('/', function (req, res, next) {
   Users.findUser(req.query, function (err, result1) {
-    if (err) throw err;
+    if(err){
+        return res.send(err);
+    };
     if (result1.length === 1) {
       var hour = 60 * 60 * 100;
       req.session.login = '1';
@@ -15,7 +17,9 @@ router.get('/', function (req, res, next) {
       res.send('1');
     } else {
       Users.findUser(req.query.username, function (err, result2) {
-        if (err) throw err;
+        if(err){
+            return res.send(err);
+        };
         if (result2.length !== 1) {
           res.send('-1');
         } else {

@@ -4,7 +4,9 @@ var Comment = require('../models/Comments');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   Comment.getAllComments(function(err,result){
-    if(err) throw err;
+    if(err){
+        return res.send(err);
+    };
     if(req.session.login === '1'){
       res.render('index',{
         'username':req.session.username,

@@ -7,7 +7,9 @@ var router = express.Router();
 router.post('/', function(req, res, next) {
     const form = new formidable.IncomingForm();
     form.parse(req,(err,fields,files)=>{
-      if(err) throw err;
+      if(err){
+          return res.send(err);
+      };
       var prefields = {'username':fields.username};
       Users.findUser(prefields,function(err,result){
         if(result.length === 0){

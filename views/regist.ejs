@@ -25,7 +25,7 @@
         <p><input type="button" class="btn btn-default" id="regist" value="注册"></p>
     </form>
     <div class="alert alert-success" role="alert" id="success"><p>注册成功，2 秒后跳转至主页</p></div>
-    <div class="alert alert-danger" role="alert" id="fail"><p>注册失败</p></div>
+    <div class="alert alert-danger" role="alert" id="fail"><</div>
 </div>
     
 </body>
@@ -42,7 +42,7 @@
                     window.location='/';
                 },2000)
             }else if(data === '-1'){
-                $('#fail').append('<p>用户名存在</p>').fadeIn();
+                $('#fail').htm('').append('<p>注册失败,用户名存在</p>').fadeIn();
             }
         })
     })
