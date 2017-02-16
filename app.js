@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var db = require('./models/db.js');
+var db = require('./lib/db.js');
 
 var session = require('express-session');
 
