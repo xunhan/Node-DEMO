@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页--说说</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        form{
+            padding-top:20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div>
+        <h2>欢迎<%= username %>来到聊天室！</h2>
+        <%if(login !== '1'){%><p><a href="/regist">注册</a>&nbsp;&nbsp;&nbsp;<a href="/login">登录</a></p><%}%>
+    </div>
+    <%if(login === '1'){%>
+        <div>
+            <input type="text" class="form-control" placeholder="content" id="content">
+            <input type="button" class="btn btn-default" value="发送" data-user="<%= username %>" id="send">
+        </div>
+    <%}%>
+    <hr/>
+    <div id="allComments">
+
+    <%if(allComments.length && login === '1'){%>
+        <%for(var i = 0;i<allComments.length;i++){%>
+            <div class="list-group">
+                <a href="#" class="list-group-item active">
+                    <h4 class="list-group-item-heading"><%= allComments[i].username %></h4>
+                    <p class="list-group-item-text"><%= allComments[i].content%></p>
+                    <p><%= allComments[i].date %></p>
+                </a>
+            </div> 
+    <%}}%>
+    </div>
+</div>
+    
+</body>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/underscore-noConflict.js"></script>
+<script type="text/template" id="template">
+    <div class="list-group">
+        <a href="#" class="list-group-item active">
+            <h4 class="list-group-item-heading">{{= username }} </h4>
+            <p class="list-group-item-text">{{= content }}</p>
+            <p>{{= date }}</p>
+        </a>
+    </div>
+</script>
+<script>
+    $('#send').click(function(e){
+        sendMe();
+    });
+    $('#content').keydown(function(e){
+        if(e.keyCode === 13){
+            sendMe();
+        }
+    })
+    function sendMe(){
+        var date = new Date();
+        var $content = $('#content');
+        var $send = $('#send');
+        $.get('/sendComment',{
+            'username':$send.attr('data-user'),
+            'content':$content.val().trim(),
+            'date':date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDay()+' '+date.getHours()+':'+ date.getMinutes()+':'+date.getSeconds()
+        },function(res,status){
+            if(res === '1'){
+                var compiled = _.template($('#template').html());
+                $('#allComments').prepend(compiled({
+                    'username':$send.attr('data-user'),
+                    'content':$content.val().trim(),
+                    'date':'刚刚'
+                }));
+            }
+        })
+    }
+</script>
+</html>

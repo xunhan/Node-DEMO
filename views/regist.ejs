@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册--说说</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        form{
+            padding-top:20px;
+        }
+        #success,
+        #fail {
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="main">
+    <h2>欢迎进入注册页面</h2>
+    <form>
+        <p>用户名：<input type="text" name="username" value="" id="username"></p>
+        <p>密&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" name="password" value="" id="password"></p>
+        <p><input type="button" class="btn btn-default" id="regist" value="注册"></p>
+    </form>
+    <div class="alert alert-success" role="alert" id="success"><p>注册成功，2 秒后跳转至主页</p></div>
+    <div class="alert alert-danger" role="alert" id="fail"><p>注册失败</p></div>
+</div>
+    
+</body>
+<script src="/js/jquery.min.js"></script>
+<script>
+    $('#regist').click(function(e){
+        $.post('/register',{
+            'username':$('#username').val().trim(),
+            'password':$('#password').val().trim()
+        },function(data){
+            if(data === '1'){
+                $('#success').fadeIn();
+                setTimeout(function(){
+                    window.location='/';
+                },2000)
+            }else if(data === '-1'){
+                $('#fail').append('<p>用户名存在</p>').fadeIn();
+            }
+        })
+    })
+    $('input').focus(function(e){
+        $('#fail').fadeOut();
+        $('#success').fadeOut();
+    })
+    
+</script>
+</html>

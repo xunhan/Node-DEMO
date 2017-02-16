@@ -1,0 +1,22 @@
+{
+  "name": "expejs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "ejs": "~2.5.5",
+    "express": "~4.14.1",
+    "express-session": "^1.15.1",
+    "formidable": "^1.1.1",
+    "mongodb": "^2.2.24",
+    "mongoose": "^4.8.2"
+  },
+  "description": "node demo",
+  "main": "app.js",
+  "devDependencies": {},
+  "author": "Chenxi",
+  "license": "ISC"
+}
