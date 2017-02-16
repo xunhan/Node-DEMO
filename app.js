@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var cookieParser = require('cookie-parser');
-const db = require('./models/db.js');
+var db = require('./models/db.js');
 
 var session = require('express-session');
 
@@ -55,6 +55,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(3000);
+module.exports = app;
 
 
