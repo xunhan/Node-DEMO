@@ -1,12 +1,10 @@
-var express = require('express');
-var formidable = require('formidable');
-var Users = require('../models/Users')
-var router = express.Router();
-
+var router = require('express').Router(),
+    formidable = require('formidable'),
+    Users = require('../models/Users');
 
 router.post('/', function(req, res, next) {
-    const form = new formidable.IncomingForm();
-    form.parse(req,(err,fields,files)=>{
+    var form = new formidable.IncomingForm();
+    form.parse(req,function(err,fields,files){
       if(err){
           return res.send(err);
       };

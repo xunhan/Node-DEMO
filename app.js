@@ -1,24 +1,24 @@
-var express = require('express');
-var app = express();
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var db = require('./lib/db.js');
-
-var session = require('express-session');
+var express = require('express'),
+    app = express(),
+    path = require('path'),
+    cookieParser = require('cookie-parser'),
+    db = require('./lib/db.js'),
+    session = require('express-session');
 
 app.use(session({
   secret: 'Chenxi DaShuaige',
   resave: false,
   saveUninitialized: true
-}))
+}));
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var regist = require('./routes/regist');
-var register = require('./routes/register');
-var login = require('./routes/login');
-var loginIn = require('./routes/loginIn');
-var sendComment = require('./routes/comment');
+var index = require('./routes/index'),
+    users = require('./routes/users'),
+    regist = require('./routes/regist'),
+    register = require('./routes/register'),
+    login = require('./routes/login'),
+    loginIn = require('./routes/loginIn'),
+    sendComment = require('./routes/comment');
+    
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

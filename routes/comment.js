@@ -1,8 +1,6 @@
 
-
-var express = require('express');
-var router = express.Router();
-var Comment = require('../models/Comments');
+var router = require('express').Router(),
+    Comment = require('../models/Comments');
 
 router.get('/', function(req, res, next) {
     Comment.addComment(req.query,function(err,result){
